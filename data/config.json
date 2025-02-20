@@ -1,0 +1,44 @@
+{
+    "name": "Project",
+    "version": "1.0.0",
+    "description": "简易框架",
+
+    "database": {
+		"metadata": {
+			"comment": "数据库配置"
+		  },
+		"sqlite":{
+			"path1": "sqlite:///E:/project/framework/data/T_database.db",
+			"test1":"sqlite:///E:/project/framework/httpserver/test.db",
+			"test2":"sqlite:///./test.db"
+		},
+		"mysql":{}
+    },
+    "httpserver": {
+		"metadata": {
+			"comment": "web服务器配置"
+		  },
+		"comment": "数据库配置",
+        "host": "localhost",
+        "port": 8080,
+        "debug": "logging",
+        "max_connections": 5000,
+		"gameserver_port":"6666"
+    },
+	"gameserver":{
+		"metadata": {
+			"comment": "游戏服务器配置"
+		  },
+		"ports":[11111]
+	}
+
+}
+
+
+
+
+
+
+
+
+
