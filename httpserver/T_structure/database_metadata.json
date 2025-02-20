@@ -1,0 +1,27 @@
+{
+    "Behavior": {
+        "columns": {
+            "ID": "INTEGER",
+            "date_time": "INTEGER",
+            "user_name": "TEXT",
+            "IP": "INTEGER",
+            "Behavior": "TEXT"
+        }
+    },
+    "students": {
+        "columns": {
+            "id": "INTEGER",
+            "first_name": "VARCHAR(128)",
+            "last_name": "VARCHAR(128)"
+        }
+    },
+    "user": {
+        "columns": {
+            "ID": "INTEGER",
+            "user_name": "TEXT",
+            "password": "TEXT",
+            "channel": "TEXT",
+            "channel_id": "INTEGER"
+        }
+    }
+}
