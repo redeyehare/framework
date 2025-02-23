@@ -8,8 +8,8 @@
 			"comment": "数据库配置"
 		  },
 		"sqlite":{
-			"path1": "sqlite:///E:/project/framework/data/T_database.db",
-			"test1":"sqlite:///E:/project/framework/httpserver/test.db",
+			"path": "sqlite:///D:/Project/framework/data/T_database.db",
+			"test1":"sqlite:///D:/project/framework/httpserver/test.db",
 			"test2":"sqlite:///./test.db"
 		},
 		"mysql":{}
@@ -23,7 +23,8 @@
         "port": 8080,
         "debug": "logging",
         "max_connections": 5000,
-		"gameserver_port":"6666"
+		"gameserver_port":"6666",
+		"logpath":"./log"
     },
 	"gameserver":{
 		"metadata": {

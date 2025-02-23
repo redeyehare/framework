@@ -1,14 +1,21 @@
+""" 启动文件 """
 from typing import Union
 
 from fastapi import Depends, FastAPI
 from fastapi.security import OAuth2PasswordBearer
 import uvicorn
 from api_router import router
+from T_user.userRouter import user_router
+from T_log.T_log_crud import logger
 
 
 app = FastAPI()
 
-app.include_router(router,tags=["user"])
+
+
+# app.include_router(router,tags=["user"])
+app.include_router(user_router,tags=["user"])
+
 @app.get("/")
 def read_root():
     return {"Hello": "World"}

@@ -48,5 +48,3 @@ DELETE /users/{id}   # 删除用户
 - 申请比赛数据
 
 
-
-![alt text](image/image.png)

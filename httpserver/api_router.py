@@ -31,7 +31,6 @@ def login(message: str):
     pass
 
 
-
 #token验证
 @router.post('/token/{message}')
 def login(message: str):
