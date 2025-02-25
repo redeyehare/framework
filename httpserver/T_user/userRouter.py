@@ -16,7 +16,7 @@ class UserRequest(BaseModel):
     ID_number: int = None
 
 @user_router.post("/user")
-def create_user(request: UserRequest):
+def userManageer(request: UserRequest):
     print(f"收到用户请求: {request.dict()}")
     try:
         match request.key:

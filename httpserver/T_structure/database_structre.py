@@ -57,16 +57,16 @@ class online_user(Base):
     user = relationship("user", back_populates="online_users")
 
 
-#日志表
+""" #日志表
 class log(Base):
     __tablename__='log'
 
 #在线房间表
 class room(Base):
-    __tablename__='room'
+    __tablename__='room' """
 
 
-Session = sessionmaker(bind=engine)
+
 
 
 
@@ -105,5 +105,16 @@ class message_read(Base):
     # 添加关系
     user = relationship("user")
     announcement = relationship("announcement")
-    announcement_id: Mapped[int] = mapped_column(Integer, ForeignKey('announcement.ID', ondelete="CASCADE", onupdate="CASCADE"))  # 公告ID
 
+#邮件表
+class mail(Base):
+    __tablename__ = 'mail'
+    ID: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
+    user_id: Mapped[int] = mapped_column(Integer, ForeignKey('user.ID', ondelete="CASCADE", onupdate="CASCADE"))  # 用户ID
+    message: Mapped[str] = mapped_column(String(1000))  # 邮件内容，使用JSON字符串存储
+
+    # 添加关系
+    user = relationship("user")
+
+
+Session = sessionmaker(bind=engine)

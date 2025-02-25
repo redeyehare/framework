@@ -5,8 +5,8 @@ from sqlalchemy import create_engine
 Root_path = Path(__file__).resolve().parent.parent
 sys.path.append(str(Root_path))
 
-from T_structure.database_table_structre import Base, user, online_user, test, server_manager
-from T_log.T_log_crud import logger
+from T_structure.database_structre import Base, user, online_user
+from T_log.T_logCrud import logger
 from initial import config_data
 
 # 从全局配置获取数据库URL

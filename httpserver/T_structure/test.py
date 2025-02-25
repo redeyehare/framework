@@ -2,12 +2,13 @@ import sys
 from pathlib import Path
 from datetime import datetime
 from sqlalchemy.orm import sessionmaker
+import json
 
 Root_path = Path(__file__).resolve().parent.parent
 sys.path.append(str(Root_path))
 
-from T_structure.database_table_structre import Base, user, online_user, test, server_manager, engine
-from T_log.T_log_crud import logger
+from T_structure.database_structre import Base, user, online_user, announcement, trigger, message_read, mail, engine
+from T_log.T_logCrud import logger
 
 # 创建会话
 Session = sessionmaker(bind=engine)
@@ -43,21 +44,52 @@ try:
     session.add(new_online_user)
     logger.info(f"创建在线用户成功，ID: {new_online_user.ID}")
 
-    # 插入测试表数据
-    new_test = test(
-        userid=new_user.ID
+    # 插入公告数据
+    new_announcement = announcement(
+        create_time=datetime.now(),
+        target="大厅",
+        send_type="一次性",
+        start_time=datetime.now(),
+        end_time=datetime.now().replace(hour=23, minute=59, second=59),
+        content=json.dumps({"title": "测试公告", "body": "这是一条测试公告内容"}),
+        is_cancelled=0,
+        priority=1
     )
-    session.add(new_test)
+    session.add(new_announcement)
     session.flush()
-    logger.info(f"创建测试数据成功，ID: {new_test.ID}")
+    logger.info(f"创建公告成功，ID: {new_announcement.ID}")
 
-    # 插入服务器管理数据
-    new_server = server_manager(
-        port=8080
+    # 插入触发器数据
+    new_trigger = trigger(
+        action="test_action",
+        status=1,
+        create_time=datetime.now()
     )
-    session.add(new_server)
+    session.add(new_trigger)
     session.flush()
-    logger.info(f"创建服务器管理数据成功，ID: {new_server.ID}")
+    logger.info(f"创建触发器成功，ID: {new_trigger.ID}")
+
+    # 插入已读公告数据
+    new_message_read = message_read(
+        user_id=new_user.ID,
+        message_type="每人一次",
+        read_date=datetime.now(),
+        read_time=datetime.now(),
+        read_count=1,
+        announcement_id=new_announcement.ID
+    )
+    session.add(new_message_read)
+    session.flush()
+    logger.info(f"创建已读公告记录成功，ID: {new_message_read.ID}")
+
+    # 插入邮件数据
+    new_mail = mail(
+        user_id=new_user.ID,
+        message=json.dumps({"subject": "测试邮件", "content": "这是一封测试邮件内容"})
+    )
+    session.add(new_mail)
+    session.flush()
+    logger.info(f"创建邮件成功，ID: {new_mail.ID}")
 
     # 提交所有更改
     session.commit()
@@ -66,14 +98,20 @@ try:
     # 验证数据插入
     users = session.query(user).all()
     online_users = session.query(online_user).all()
-    tests = session.query(test).all()
-    servers = session.query(server_manager).all()
+
+    announcements = session.query(announcement).all()
+    triggers = session.query(trigger).all()
+    message_reads = session.query(message_read).all()
+    mails = session.query(mail).all()
 
     print("\n已插入的数据:")
     print(f"用户数: {len(users)}")
     print(f"在线用户数: {len(online_users)}")
-    print(f"测试表记录数: {len(tests)}")
-    print(f"服务器管理记录数: {len(servers)}")
+
+    print(f"公告数: {len(announcements)}")
+    print(f"触发器数: {len(triggers)}")
+    print(f"已读公告记录数: {len(message_reads)}")
+    print(f"邮件数: {len(mails)}")
 
 except Exception as e:
     session.rollback()

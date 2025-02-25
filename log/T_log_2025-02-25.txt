@@ -1,0 +1,21 @@
+2025-02-25 22:07:40.801 | INFO     | T_structure.database_structre:<module>:21 - sqlite:///./test.db
+2025-02-25 22:10:48.736 | INFO     | T_structure.database_structre:<module>:21 - sqlite:///./test.db
+2025-02-25 22:13:37.758 | INFO     | T_structure.database_structre:<module>:21 - sqlite:///./test.db
+2025-02-25 22:14:23.202 | INFO     | T_structure.database_structre:<module>:21 - sqlite:///./test.db
+2025-02-25 22:14:36.681 | INFO     | T_structure.database_structre:<module>:21 - sqlite:///./test.db
+2025-02-25 22:14:36.694 | INFO     | __main__:<module>:14 - Using database URL: sqlite:///./test.db
+2025-02-25 22:14:36.754 | INFO     | __main__:create_tables:24 - Tables created successfully
+2025-02-25 22:15:37.715 | INFO     | T_structure.database_structre:<module>:21 - sqlite:///./test.db
+2025-02-25 22:15:37.728 | INFO     | __main__:<module>:14 - Using database URL: sqlite:///./test.db
+2025-02-25 22:15:37.818 | INFO     | __main__:create_tables:24 - Tables created successfully
+2025-02-25 22:39:58.287 | INFO     | T_structure.database_structre:<module>:21 - sqlite:///./test.db
+2025-02-25 22:43:13.925 | INFO     | T_structure.database_structre:<module>:21 - sqlite:///./test.db
+2025-02-25 22:45:05.552 | INFO     | T_structure.database_structre:<module>:21 - sqlite:///./test.db
+2025-02-25 22:45:30.159 | INFO     | T_structure.database_structre:<module>:21 - sqlite:///./test.db
+2025-02-25 22:45:30.180 | INFO     | __main__:<module>:33 - 创建用户成功，用户ID: 1
+2025-02-25 22:45:30.180 | INFO     | __main__:<module>:45 - 创建在线用户成功，ID: test-20250225224530
+2025-02-25 22:45:30.182 | INFO     | __main__:<module>:60 - 创建公告成功，ID: 1
+2025-02-25 22:45:30.184 | INFO     | __main__:<module>:70 - 创建触发器成功，ID: 1
+2025-02-25 22:45:30.185 | INFO     | __main__:<module>:83 - 创建已读公告记录成功，ID: 1
+2025-02-25 22:45:30.186 | INFO     | __main__:<module>:92 - 创建邮件成功，ID: 1
+2025-02-25 22:45:30.192 | INFO     | __main__:<module>:96 - 所有测试数据插入成功

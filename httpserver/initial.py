@@ -3,7 +3,7 @@
 import json
 import sys
 from pathlib import Path
-from T_log.T_log_crud import logger
+from T_log.T_logCrud import logger
 
 logger.remove()
 logger.add(sys.stderr, level="INFO")

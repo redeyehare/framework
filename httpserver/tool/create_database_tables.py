@@ -8,7 +8,7 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 import T_structure.database_table_structre as dbts
-from T_structure.database_table_structre import engine
+from T_structure.database_structre import engine
 from T_log.T_log_crud import logger
 
 

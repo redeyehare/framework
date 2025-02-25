@@ -11,7 +11,7 @@ sys.path.append(str(Root_path))
 
 from T_log.T_logCrud import logger
 
-from T_structure.database_table_structre import user, online_user, Session
+from T_structure.database_structre import user, online_user, Session
 
 # 创建雪花ID生成器实例
 snowflake = SnowflakeGenerator(42)
