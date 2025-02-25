@@ -4,6 +4,8 @@ import json
 import sys
 from pathlib import Path
 from T_log.T_logCrud import logger
+from sqlalchemy.orm import sessionmaker
+from T_structure.database_structre import engine
 
 logger.remove()
 logger.add(sys.stderr, level="INFO")
@@ -31,6 +33,20 @@ def load_config():
         error_msg = f'加载配置文件失败: {str(e)}'
         logger.error(error_msg)
         raise Exception(error_msg)
+
+# 创建Session工厂
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+def get_db():
+    """获取数据库会话
+    Yields:
+        Session: 数据库会话对象
+    """
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
 
 # 初始化加载配置
 load_config()
