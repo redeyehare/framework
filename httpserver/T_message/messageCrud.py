@@ -1,10 +1,10 @@
 """ 整个消息功能模块 """
 from sqlalchemy.orm import Session
-from ..T_structure.database_structre import mail
-from ..initial import get_db
+from T_structure.database_structre import mail
+from T_manager.initial import get_db
 import json
 from datetime import datetime
-from snowflake import SnowflakeGenerator
+from T_manager.T_logCrud import snowflake
 
 #创建公告
 

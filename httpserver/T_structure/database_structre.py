@@ -1,28 +1,24 @@
 """ 用户数据库表结构 """
 import datetime
 import json
+import os
 from pathlib import Path
 import sys
-from sqlalchemy import ForeignKey, Integer, String, create_engine
+from sqlalchemy import ForeignKey, Integer, String, create_engine, DateTime, event
+from sqlalchemy.orm import sessionmaker, Mapped, mapped_column, relationship, declarative_base
 
-from sqlalchemy.orm import sessionmaker,Mapped,mapped_column,relationship,declarative_base
-from sqlalchemy import DateTime,event
-
+# 设置项目根路径
 Root_path = Path(__file__).resolve().parent.parent
 sys.path.append(str(Root_path))
-from T_log.T_logCrud import logger
-from initial import config_data
 
+# 从T_manager.config导入配置
+from T_manager.config import config_data
 
-# 打印读取的数据
+url = config_data['database']['sqlite']['test2']
 
-url =config_data['database']['sqlite']['test2']
-
-logger.info(url)
-
-engine = create_engine(url,echo=True)
-
-Base=declarative_base()
+# 创建数据库引擎
+engine = create_engine(url, echo=True)
+Base = declarative_base()
 
 #用户表
 class user(Base):
@@ -69,12 +65,15 @@ class room(Base):
 
 
 
+
+
 #公告表
 class announcement(Base):
     __tablename__ = 'announcement'
     ID: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
     create_time: Mapped[DateTime] = mapped_column(DateTime, nullable=False)  # 创建时间
     content: Mapped[str] = mapped_column(String(1000))  # 公告内容，使用JSON字符串存储，格式为{"key1": "value1", "key2": "value2"}
+
 
 
 

@@ -2,19 +2,15 @@
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
 from datetime import datetime
-from snowflake import SnowflakeGenerator
 import sys
 from pathlib import Path
 
 Root_path = Path(__file__).resolve().parent.parent
 sys.path.append(str(Root_path))
 
-from T_log.T_logCrud import logger
+from T_manager.T_logCrud import logger, snowflake
 
 from T_structure.database_structre import user, online_user, Session
-
-# 创建雪花ID生成器实例
-snowflake = SnowflakeGenerator(42)
 
 # 登录
 @logger.catch()

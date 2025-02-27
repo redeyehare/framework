@@ -8,7 +8,7 @@ Root_path = Path(__file__).resolve().parent.parent
 sys.path.append(str(Root_path))
 
 from T_structure.database_structre import Base, user, online_user, announcement, trigger, message_read, mail, engine
-from T_log.T_logCrud import logger
+from T_manager.T_logCrud import logger
 
 # 创建会话
 Session = sessionmaker(bind=engine)

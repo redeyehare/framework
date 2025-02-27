@@ -12,7 +12,7 @@ from sqlalchemy import update
 Root_path = Path(__file__).resolve().parent.parent
 sys.path.append(str(Root_path))
 import T_structure.database_table_structre as dbts
-from T_log.T_log_crud import logger
+from T_manager.T_logCrud import logger
 
 
 

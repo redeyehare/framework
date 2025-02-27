@@ -2,7 +2,7 @@ import json
 import time
 from fastapi import APIRouter
 from datetime import datetime
-from T_log.T_log_crud import logger
+from T_manager.T_logCrud import logger
 
 router = APIRouter()
 

@@ -1,22 +1,15 @@
-""" 初始化 """
-
+""" 全局配置引用 """
 import json
-import sys
 from pathlib import Path
-from T_log.T_logCrud import logger
-from sqlalchemy.orm import sessionmaker
-from T_structure.database_structre import engine
+from T_manager.T_logCrud import logger
 
-logger.remove()
-logger.add(sys.stderr, level="INFO")
-
-# 全局配置变量
 config_data = {}
 
 def load_config():
     """加载配置文件到全局变量"""
     try:
-        config_path = Path(__file__).resolve().parent.parent / 'data' / 'config.json'
+        # 修改配置文件路径计算逻辑，指向项目根目录的data文件夹
+        config_path = Path(__file__).resolve().parent.parent.parent / 'data' / 'config.json'
         logger.info(f"配置文件路径: {config_path}")
         
         with open(config_path, 'r', encoding='utf-8') as f:
@@ -33,20 +26,6 @@ def load_config():
         error_msg = f'加载配置文件失败: {str(e)}'
         logger.error(error_msg)
         raise Exception(error_msg)
-
-# 创建Session工厂
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-
-def get_db():
-    """获取数据库会话
-    Yields:
-        Session: 数据库会话对象
-    """
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
 # 初始化加载配置
 load_config()

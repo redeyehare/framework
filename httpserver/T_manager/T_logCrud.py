@@ -7,7 +7,7 @@ import uuid
 from datetime import datetime
 
 from loguru import logger
-from initial import config_data
+from T_manager.config import config_data
 
 # 获取日志路径配置
 log_path = Path(config_data['httpserver']['logpath'])
@@ -56,3 +56,8 @@ def insert_log(log_level: str):
     )
 
 
+
+
+from snowflake import SnowflakeGenerator
+# 创建雪花ID生成器实例
+snowflake = SnowflakeGenerator(42)

@@ -6,8 +6,8 @@ Root_path = Path(__file__).resolve().parent.parent
 sys.path.append(str(Root_path))
 
 from T_structure.database_structre import Base, user, online_user
-from T_log.T_logCrud import logger
-from initial import config_data
+from T_manager.T_logCrud import logger
+from T_manager.initial import config_data
 
 # 从全局配置获取数据库URL
 url = config_data['database']['sqlite']['test2']
