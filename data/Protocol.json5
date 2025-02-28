@@ -1,0 +1,155 @@
+{
+
+// 前后端消息对接文档
+
+// 客户端请求格式
+client_request:{
+  // 请求类型
+  request: {
+    // 状态: 状态码,登陆,注册,进入大厅,进入房间
+    state: "EVT2025022701",
+    // 用户令牌，用于身份验证
+    token: "string",
+    // 操作类型：user-用户相关, activity-活动相关, reward-奖励相关
+    "todo": "user",
+    // 请求参数
+    "params": {
+      // 根据todo类型不同，传入不同的参数
+    }
+
+  }
+},
+
+// 服务器响应格式
+server_response:{
+  user:{
+    username:"123",
+    ID:123,
+    token:123
+  },
+
+  ground:{
+    // 服务器列表
+    //大厅内人数是所有人数,包括不在房间内的
+    servers: [{
+      server_id: "SRV_001",
+      server_ip: "123.456.789.0",
+      server_port: 8080,
+      status: "online", // online-在线, offline-离线, maintenance-维护中
+      current_players: 100,//当前人数
+      max_players: 1000,//最大人数
+    }],
+    // 房间列表
+    rooms: [{
+      room_id: "RM_001",
+      server_id: "SRV_001",
+      content:{
+        room_name: "新手房间",
+        room_type: "normal",
+        current_players: 5,
+        max_players: 10,
+        create_time: "2025-02-27T12:00:00Z",
+        status: "gaming",
+        start_time:"",
+        end_time:""
+      },
+    }],
+    // 在线用户列表
+    online_users: [{
+      user_id: "USR_001",
+      server_id: "SRV_001",
+      room_id: "RM_001",
+      status: "gaming", // online-在线, gaming-游戏中, afk-暂离
+      login_time: "2025-02-27T11:55:00Z",
+      last_active_time: "2025-02-27T12:10:00Z"
+    }]
+  },
+//公告
+  noties:{
+    Priority:1,//优先级
+    Id:123,
+    content:"",
+    image:"",
+    type:""
+  },
+//跑马灯
+  TickerNews:{
+    Priority:1,//优先级
+    content:""
+},
+
+  mail:{
+
+  },
+//活动协议
+  Activity:{
+    activity_id:"123" ,
+    content:{
+      title: "",// 活动标题
+      type: "once",// 活动类型：once-一次性, weekly-每周一次, monthly-每月一次
+      start_time:"",
+      end_time:"",
+      conditions:{//准入条件
+        "min_level": 15,//等级
+        "required_quest": "Q1003",//前置任务  
+        "required_online_time": 60,// 在线时长要求（分钟）
+        "required_resources": [   //资源要求
+          {"id": "RESOURCE_001", "count": 100}
+        ],
+
+      },
+      "rewards":[//奖励
+        {
+          "id": "ITEM_1001",
+          "count": 5,
+          "icon": "item_icon_url"
+        },],  
+      "claimed": false,// 是否已领取
+        
+      "progress": {// 活动进度
+        // 当前进度
+        "current": 3,
+        // 总进度
+        "total": 7,
+        // 剩余尝试次数
+        "remaining_attempts": 2
+      },
+      // 相关系统
+      "related_systems": {
+        // 排行榜ID
+        "leaderboard_id": "LB_EVT20250227"
+      }
+    },
+  },
+
+  game:{}
+  },
+  //状态吗配置表
+  state:{
+    code100:"注册",
+    code101:"登陆",
+    code102:"进入大厅",
+    code103:"进入房间",
+    code104:"退出房间",
+    code105:"退出大厅",
+    code106:"退出游戏",
+    code107:"断线重连",
+    code108:"断线重连失败",
+    code109:"断线重连成功",
+    
+  
+    
+
+
+  }
+
+
+}
+
+
+
+
+
+
+  
+
