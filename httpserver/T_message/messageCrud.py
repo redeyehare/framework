@@ -132,7 +132,8 @@ def create_mail(user_id: int, message_content: dict):
             "id": new_mail.ID,                          # 邮件ID
             "create_datatime": datetime.now().isoformat(),  # 创建时间
             "is_read": False,                              # 是否已读
-            "read_time": None                              # 阅读时间，初始为None
+            "read_time": None,                             # 阅读时间，初始为None
+            "creator": "system"                           # 邮件创建者，默认为system
         })
         
         # 将消息内容转换为JSON字符串并更新邮件记录

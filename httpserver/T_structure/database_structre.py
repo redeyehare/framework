@@ -11,8 +11,10 @@ from sqlalchemy.orm import sessionmaker, Mapped, mapped_column, relationship, de
 Root_path = Path(__file__).resolve().parent.parent
 sys.path.append(str(Root_path))
 
-# 从T_manager.config导入配置
-from T_manager.config import config_data
+# 初始化数据库连接
+config_file = os.path.join(Root_path, 'data', 'config.json')
+with open(config_file, 'r', encoding='utf-8') as f:
+    config_data = json.load(f)
 
 url = config_data['database']['sqlite']['test2']
 
@@ -65,15 +67,12 @@ class room(Base):
 
 
 
-
-
 #公告表
 class announcement(Base):
     __tablename__ = 'announcement'
     ID: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
     create_time: Mapped[DateTime] = mapped_column(DateTime, nullable=False)  # 创建时间
     content: Mapped[str] = mapped_column(String(1000))  # 公告内容，使用JSON字符串存储，格式为{"key1": "value1", "key2": "value2"}
-
 
 
 

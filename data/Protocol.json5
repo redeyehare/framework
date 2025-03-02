@@ -2,30 +2,174 @@
 
 // 前后端消息对接文档
 
-// 客户端请求格式
+// 客户端请求主格式
 client_request:{
+  //用路由直接区分请求
+  router:"/user",//user,ground,mail,activity
   // 请求类型
   request: {
     // 状态: 状态码,登陆,注册,进入大厅,进入房间
     state: "EVT2025022701",
+    userID:"",//
     // 用户令牌，用于身份验证
     token: "string",
-    // 操作类型：user-用户相关, activity-活动相关, reward-奖励相关
-    "todo": "user",
+    datetime:"",
+    todo:"",//行为
     // 请求参数
-    "params": {
+    params: {
       // 根据todo类型不同，传入不同的参数
     }
 
   }
 },
 
-// 服务器响应格式
 server_response:{
+  feedback:"",//行为返回
+  time:"",
+  params: {
+      
+    },
+},
+
+server_push:{
+  create_announcement:{},
+  create_tickerNews:{params:""},
+
+},
+
+//todo/参数
+todo:{
+  //后台操作返回统一返回
+  feedback:{params:"noties"},
+  //后台推送 tickerNews announcement
+
+  //user
+  register:{params:"ip,mac,phone,email,password,openid{}"},feedback:{params:"noties"},
+  login:{params:"ip,mac,phone,password,openid{}"},feedback:{params:"ID,token,noties"},
+  change:{params:"ip,mac,phone,email,password"},        feedback:{params:"noties"},
+  logout:{params:"ip"},                        feedback:{params:"noties"},
+  cancel:{params:""},                          feedback:{params:"noties"},
+
+  //后台操作
+  change_user:{params:"user:{}"},feedback:{params:"noties"},
+
   user:{
-    username:"123",
+    userID:"int",
+    register_datetime:"timestamp",
+    name:"string",
+    phone:"string",
+    email:"string",
+    ID_number:"string",
+    password:"int",
+    cancel:0,//是否注销
+    IP:"",
+    mac:"",
+    openid:{},//第三方id
+    blackList:0,
+    whiteList:0,
+  },
+
+
+
+
+
+  //announcement
+  request_announcement:{},feedback:{params:"noties"},
+
+  /* 
+  * 后台操作
+  */
+  create_announcement:{},
+  change_announcement:{},
+
+
+  announcement:{
     ID:123,
-    token:123
+    create_datetime:"",
+    title:"string",
+    msg:{title:"string",content:"string",image:"string",type:""},
+  },
+
+
+  },
+
+
+
+
+
+
+
+  //mail
+  request_mail:{},feedback:{params:{mail:"",}},
+
+  mark_mail:{params:"mail_id"},feedback:{params:"msg:{is_read:1}"},
+  create_mail:{userID:"",params:"msg:{title,content,rewards:[{id,count}]}"},feedback:{params:"noties"},
+
+
+  mail:{
+    ID:123,
+    userID:1,
+    create_datetime:"",
+    msg:{
+      mail_id:1,
+      title:"",
+      content:"",
+      is_read:1,
+      read_time:"",
+      creator:"",  // 邮件创建者
+      "rewards":[//奖励
+      {
+        "prop_id": "ITEM_1001",
+        "count": 5,
+      },]
+  }
+  },
+
+
+
+
+  ////后台操作
+  create_mail:{userID:"",params:"msg,rewards:[//奖励]"},
+  delete_mail:{userID:"",params:"mail_id,"},            
+
+  ////后台操作
+  create_tickerNews:{userID:"",params:""},
+  delete_tickerNews:{},
+
+  //ground
+  request_ground:{
+    // 服务器列表
+    servers: [{
+      server_id: "SRV_001",
+      server_ip: "123.456.789.0",
+      server_port: 8080,
+      status: "online", // online-在线, offline-离线, maintenance-维护中
+      current_players: 100,//当前人数
+  },]
+  },
+
+
+
+// 服务器响应主体格式
+server_response:{
+  feedback:"",//行为返回
+  time:"",
+  params: {
+      
+    },
+
+
+  feedback:{
+    //user
+    register:{params:"noties"},
+    login:{params:"ID,token,noties"},
+    change:{params:"noties"},
+    logout:{params:"noties"},
+    cancel:{params:"noties"},
+
+
+  //
+
   },
 
   ground:{
@@ -79,7 +223,23 @@ server_response:{
 },
 
   mail:{
-
+    ID:123,
+    userID:1,
+    msg:{
+      mail_id:1,
+      create_datatime:"",
+      tile:"",
+      content:"",
+      is_read:1,
+      read_time:"",
+      creator:"",  // 邮件创建者
+      "rewards":[//奖励
+      {
+        "id": "ITEM_1001",
+        "count": 5,
+        "icon": "item_icon_url"
+      },]
+  }
   },
 //活动协议
   Activity:{
@@ -122,7 +282,9 @@ server_response:{
     },
   },
 
-  game:{}
+  game:{
+
+  }
   },
   //状态吗配置表
   state:{
@@ -133,14 +295,8 @@ server_response:{
     code104:"退出房间",
     code105:"退出大厅",
     code106:"退出游戏",
-    code107:"断线重连",
-    code108:"断线重连失败",
-    code109:"断线重连成功",
-    
-  
-    
 
-
+    
   }
 
 

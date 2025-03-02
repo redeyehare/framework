@@ -1,12 +1,8 @@
 {
-    "name": "Project",
-    "version": "1.0.0",
-    "description": "简易框架",
+    name: "Tt",
+    version: "1.0.0",
 
-    "database": {
-		"metadata": {
-			"comment": "数据库配置"
-		  },
+    database: {//数据库配置
 		"sqlite":{
 			"path": "sqlite:///D:/Project/framework/data/T_database.db",
 			"test1":"sqlite:///D:/project/framework/httpserver/test.db",
@@ -14,23 +10,24 @@
 		},
 		"mysql":{}
     },
-    "httpserver": {
-		"metadata": {
-			"comment": "web服务器配置"
-		  },
-		"comment": "数据库配置",
-        "host": "localhost",
-        "port": 8080,
-        "debug": "logging",
-        "max_connections": 5000,
-		"gameserver_port":"6666",
-		"logpath":"./log"
+    httpserver: {
+        host: "localhost",
+        port: 8080,
+        debug: "logging",//debug类型
+        max_connections: 5000,
+		logpath:"./log"
     },
-	"gameserver":{
-		"metadata": {
-			"comment": "游戏服务器配置"
-		  },
-		"ports":[11111]
+	mail:{
+		show_count:1,
+		max_count:1,
+	},
+	msg_push:{
+		immediate_interval:1,//即时消息发送间隔
+		reserve_interval :1,//预定消息请发送间隔
+	},
+	gameserver:{//游戏服务器配置
+		"ports":[11111],
+		"max_connections": 5000,
 	}
 
 }
