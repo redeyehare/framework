@@ -15,7 +15,10 @@
         port: 8080,
         debug: "logging",//debug类型
         max_connections: 5000,
-		logpath:"./log"
+		logpath:"./log",
+		SQLAlchemy:{
+			
+		},
     },
 	mail:{
 		show_count:1,
